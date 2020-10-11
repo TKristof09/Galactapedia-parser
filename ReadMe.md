@@ -3,7 +3,7 @@
 
 These scripts help you create commands for voice attack that read out the articles found on https://robertsspaceindustries.com/galactapedia/ using text to speech.
 
-The crawler.py script goes through every article listed in the Index section on https://robertsspaceindustries.com/galactapedia/ and save the title and the link and dumps it in a json file.  
+The crawler.py script goes through every article listed in the Index section on https://robertsspaceindustries.com/galactapedia/ and saves the title and the link and dumps it in a json file.  
 
 After that you should run the VACommandsExporter.py script which creates a Voice Attack profile containing a command for each article.  
 The commands in Voice attack get trigger by saying:  
