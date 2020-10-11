@@ -15,7 +15,8 @@ If you don't want to use the default TTS from Windows you need to change the 3rd
     
 Requirements:  
 
-* [Python](https://www.python.org) - and install the required modules by running the command `pip install -r Requirements.txt`  
+* [Python](https://www.python.org) - make sure to add python to your PATH during the installation
+* Install the required python modules by running the command `pip install -r Requirements.txt`  
 * Voice Attack  
 * Google Chrome and [ChromeDriver](https://chromedriver.chromium.org/downloads) for the crawler (you can change the code to use other browsers if you want to, but I haven't tested with anything else). Also make sure that chromedriver is in your PATH environment variable  
     
