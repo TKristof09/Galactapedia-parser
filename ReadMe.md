@@ -21,4 +21,5 @@ Requirements:
 * Google Chrome and [ChromeDriver](https://chromedriver.chromium.org/downloads) for the crawler (you can change the code to use other browsers if you want to, but I haven't tested with anything else). Also make sure that chromedriver is in your PATH environment variable  
     
 
-    
+## Notes
+You may want to add the profile as a global profile in Voice Attack to use it alongside other profiles such as HCS voicepacks
