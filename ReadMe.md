@@ -25,3 +25,6 @@ Requirements:
 You may want to add the profile as a global profile in Voice Attack to use it alongside other profiles such as HCS voicepacks
 
 If you want to stop the TTS at any point, just say stop/stop talking/thanks/thank you
+
+## Know issues
+Asking for the article called "Xi'an Cuisine" causes a hang
