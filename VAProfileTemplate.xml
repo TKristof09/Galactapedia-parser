@@ -2,7 +2,7 @@
 <Profile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <HasMB>false</HasMB>
   <Id>96decf2f-57dc-4812-9081-6cbe2f96657c</Id>
-  <Name>Galactopedia</Name>
+  <Name>Galactapedia</Name>
   <Commands>
     <Command>
       <Referrer xsi:nil="true" />
