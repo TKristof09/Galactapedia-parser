@@ -58,4 +58,4 @@ def parse_article(title):
 if __name__ == '__main__':
         title = sys.argv[1]
         article = parse_article(title)
-        print("qsdqsd"+article.text.replace("UEE", "U-E-E").replace("’", "'").replace(';', ',').encode("charmap", errors="ignore").decode("charmap", errors="ignore"))
+        print(article.text.replace("UEE", "U-E-E").replace("’", "'").replace(';', ',').encode("charmap", errors="ignore").decode("charmap", errors="ignore"))
