@@ -1,62 +1,59 @@
 
 import sys
 import json
-from bs4 import BeautifulSoup
-import requests
+import random
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
-FILENAME = "articles.json"
-"""
-class Card:
-    def __init__(self, image, table):
-        self.image = image
-        self.table = table
-"""
-class Article:
-    def __init__(self, text):
-        self.text = text
-        
-def parse_article(title):
-    links = {}
-    with open(FILENAME, 'r') as f:
-        links = json.load(f)
-    first_letter = title[0]
-    if first_letter.isdigit():
-        first_letter = "#"
-    url = links[first_letter][title]
-    html = requests.get(url).text
-    soup = BeautifulSoup(html, features="lxml")
-    """
-    categories_base_url = "https://https://robertsspaceindustries.com"
-    cat_ul = soup.find('ul', class_="p-article__categories")
-    if cat_ul is not None:
-        categories = [(x.text, categories_base_url + x.a["href"]) for x in cat_ul.children]
+LINKS_FILENAME = "links.json"
+ARTICLES_FILENAME = "articles.json"
 
-    tags_base_url = "https://https://robertsspaceindustries.com"
-    tags_ul = soup.find('ul', class_="p-article__tags")
-    if tags_ul is not None:
-        tags = [(x.text, tags_base_url + x.a["href"]) for x in tags_ul.children]
-    """
-    md = soup.find('section', class_="p-article__content").find("div", class_="c-markdown-content")
+def parse_link(link):
+
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.set_window_size(700,500)
+    driver.get(link)
+    article = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//section[@class='p-article__content']//div[@class='c-markdown-content']")))
     text = ""
-    for i in md.children:
-        text += i.text +" : "
-    """
-    card = soup.find("div", class_="c-card")
-    if card is not None:
-        image = card.find("figure", class_="c-card__image").img["src"]
+    for p in article.get_property("children"):
+        text += p.text + "\n"
+    driver.quit()
+    return text
 
-    table = {}
-    table_ul = card.find("ul", class_="c-table")
-    if table_ul is not None:
-        for i in table_ul.children:
-            cells = list(i.children)
-            table[cells[0].text] = cells[1].text
-    """
-    return Article(text)
+
+def parse_article(title):
+    articles = {}
+    with open(FILENAME, 'r') as f:
+        articles = json.load(f)
+    return articles[title]
+
 if __name__ == '__main__':
-        title = sys.argv[1]
-        article = parse_article(title)
-        print(article.text.replace('“', ' ').replace("UEE", "U-E-E").replace(';', ',').encode("charmap", errors="ignore").decode("charmap", errors="ignore")[:-1])
+    title = sys.argv[1]
+    articles = {}
+    try:
+        with open(ARTICLES_FILENAME, 'r') as f:
+            articles = json.load(f)
+    except FileNotFoundError:
+        with open(ARTICLES_FILENAME, 'w') as f:
+            f.write(json.dumps({}))
+    if title not in articles or title == "*":
+        with open(LINKS_FILENAME, 'r') as f_links:
+            links = json.load(f_links)
+            if title == "*":
+                title = random.choice(list(links.keys()))
+            if title not in articles:
+                articles[title] = parse_link(links[title])
+        with open(ARTICLES_FILENAME, 'w') as f:
+            f.write(json.dumps(articles))
+    article = articles[title]
+    #article = parse_article(title)
+    print(article.replace('“', ' ').replace("UEE", "U-E-E").replace(';', ',').encode("charmap", errors="ignore").decode("charmap", errors="ignore")[:-1])
 
 
-        
+

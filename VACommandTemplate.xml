@@ -24,7 +24,7 @@
       <CommandString>100i</CommandString>
       <ActionSequence>
         <CommandAction>
-          <_caption>Set text [article] to ''</_caption>
+          <_caption>Say, 'Alright.'</_caption>
           <PairingSet>false</PairingSet>
           <PairingSetElse>false</PairingSetElse>
           <Ordinal>0</Ordinal>
@@ -33,7 +33,45 @@
           <ConditionSkip>false</ConditionSkip>
           <IsSuffixAction>false</IsSuffixAction>
           <DecimalTransient1>0</DecimalTransient1>
-          <Caption>Set text [article] to ''</Caption>
+          <Caption>Say, 'Alright.'</Caption>
+          <Id>99993a1a-0379-404f-8867-e17a431bf94d</Id>
+          <ActionType>Say</ActionType>
+          <Duration>1</Duration>
+          <Delay>0</Delay>
+          <KeyCodes />
+          <Context>Alright.</Context>
+          <!--<Context2 xml:space="preserve">Microsoft Hazel Desktop</Context2>-->
+          <Context3>00000000-0000-0000-0000-000000000000</Context3>
+          <Context4>Default</Context4>
+          <X>100</X>
+          <Y>0</Y>
+          <Z>0</Z>
+          <InputMode>0</InputMode>
+          <ConditionPairing>0</ConditionPairing>
+          <ConditionGroup>0</ConditionGroup>
+          <ConditionStartOperator>0</ConditionStartOperator>
+          <ConditionStartValue>0</ConditionStartValue>
+          <ConditionStartValueType>0</ConditionStartValueType>
+          <ConditionStartType>0</ConditionStartType>
+          <DecimalContext1>0</DecimalContext1>
+          <DecimalContext2>0</DecimalContext2>
+          <DateContext1>0001-01-01T00:00:00</DateContext1>
+          <DateContext2>0001-01-01T00:00:00</DateContext2>
+          <Disabled>false</Disabled>
+          <RandomSounds />
+          <ConditionExpressions />
+        </CommandAction>
+        <CommandAction>
+          <_caption>Set text [article] to [Not Set]</_caption>
+          <PairingSet>false</PairingSet>
+          <PairingSetElse>false</PairingSetElse>
+          <Ordinal>0</Ordinal>
+          <ConditionMet xsi:nil="true" />
+          <IndentLevel>0</IndentLevel>
+          <ConditionSkip>false</ConditionSkip>
+          <IsSuffixAction>false</IsSuffixAction>
+          <DecimalTransient1>0</DecimalTransient1>
+          <Caption>Set text [article] to [Not Set]</Caption>
           <Id>a6215c08-5233-466c-a5a5-d00e722c5950</Id>
           <ActionType>TextSet</ActionType>
           <Duration>0</Duration>
@@ -46,7 +84,7 @@
           <X>0</X>
           <Y>0</Y>
           <Z>0</Z>
-          <InputMode>0</InputMode>
+          <InputMode>3</InputMode>
           <ConditionSetName />
           <ConditionSetCondition />
           <ConditionPairing>0</ConditionPairing>
@@ -64,7 +102,7 @@
           <ConditionExpressions />
         </CommandAction>
         <CommandAction>
-          <_caption>Run application 'python' -with parameters 'main.py "100i"' (hidden) - wait until it completes</_caption>
+          <_caption>Run main.py</_caption>
           <PairingSet>false</PairingSet>
           <PairingSetElse>false</PairingSetElse>
           <Ordinal>1</Ordinal>
@@ -73,7 +111,7 @@
           <ConditionSkip>false</ConditionSkip>
           <IsSuffixAction>false</IsSuffixAction>
           <DecimalTransient1>0</DecimalTransient1>
-          <Caption>Run application 'python' -with parameters 'main.py "100i"' (hidden) - wait until it completes</Caption>
+          <Caption>Run main.py</Caption>
           <Id>c6abc900-02a4-4e07-8a2f-58a881c9ade9</Id>
           <ActionType>Launch</ActionType>
           <Duration>0</Duration>
@@ -119,7 +157,7 @@
           <Delay>1</Delay>
           <KeyCodes />
           <Context>{TXT:article}</Context>
-          <Context2 xml:space="preserve">Default</Context2>
+          <!--<Context2 xml:space="preserve">Microsoft Hazel Desktop</Context2>-->
           <Context3>00000000-0000-0000-0000-000000000000</Context3>
           <Context4>Default</Context4>
           <X>100</X>
@@ -141,7 +179,7 @@
           <ConditionExpressions />
         </CommandAction>
       </ActionSequence>
-      <Async>true</Async>
+      <Async>false</Async>
       <Enabled>true</Enabled>
       <UseShortcut>false</UseShortcut>
       <keyValue>0</keyValue>
