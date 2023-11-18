@@ -61,7 +61,7 @@ if __name__ == '__main__':
             if end == -1:
                 end = s.find(".", start + 2000, start + 3500)
             s = s[start:end]
-            if end != -1:
+            if end != -1 and start != -1:
                 s = s + " Do you want me to continue?"
         else:
             end = s.find("\n", 2000, 3500)
