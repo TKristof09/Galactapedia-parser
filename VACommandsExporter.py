@@ -8,7 +8,7 @@ PROFILE_TEMPLATE_FILE = "VAProfileTemplate.xml"
 LINKS_JSON = "links.json"
 
 
-def createCommand(command, python_arg):
+def createCommand(command, python_arg, cont=False):
     template_xml = ET.parse(COMMAND_TEMPLATE_FILE)
     command_root = template_xml.getroot()
     id = command_root.find("Id")
@@ -21,11 +21,15 @@ def createCommand(command, python_arg):
         command_action_id.text = str(uuid.uuid4())
     context = command_actions[2].find("Context2")
     context.text = f'main.py "{python_arg}"'
+    if cont:
+        context.text += " --continue"
+
+    command_actions[4].find("Context2").text = f'{python_arg}'
 
     cwd = command_actions[2].find("Context3")
     cwd.text = os.getcwd()
 
-    if python_arg != "*":
+    if python_arg != "*" and not cont:
         command_actions[0].find("_caption").text = f"Say, 'Searching {python_arg} in the Galactapedia'"
         command_actions[0].find("Caption").text = f"Say, 'Searching {python_arg} in the Galactapedia'"
         command_actions[0].find("Context").text = f"Searching {python_arg} in the Galactapedia"
@@ -42,13 +46,18 @@ profile = ET.parse(PROFILE_TEMPLATE_FILE)
 profile_root = profile.getroot()
 commands_node = profile_root.find("Commands")
 
-COMMAND_BASE = "Tell me about [the] @@;Can you tell me about [the] @@; What do you know about [the] @@"
+cont_command = commands_node.findall("./Command")[1]
+cont_command_actions = cont_command.findall("./ActionSequence/CommandAction")
+cont_command_actions[0].find("Context3").text = os.getcwd()
+
+commands_node.append(createCommand("Tell me about something new", "*"))
+COMMAND_BASE = "Tell me about [the;] @@;Can you tell me about [the;] @@; What do you know about [the;] @@"
 
 for title,link in links.items():
-    command = COMMAND_BASE.replace("@@", title)
+    cmd = title.replace("(", "[").replace(")", ";]")
+    command = COMMAND_BASE.replace("@@", cmd)
     node = createCommand(command, title)
     commands_node.append(node)
 
-commands_node.append(createCommand("Tell me about something new", "*"))
 
 profile.write("Galactapedia.vap",encoding="utf-8")

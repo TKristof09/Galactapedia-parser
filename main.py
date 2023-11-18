@@ -19,29 +19,26 @@ def parse_link(link):
     driver = webdriver.Chrome(options=chrome_options)
     driver.set_window_size(700,500)
     driver.get(link)
-    article = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//section[@class='p-article__content']//div[@class='c-markdown-content']")))
+    paragraphs = WebDriverWait(driver, 20).until(EC.visibility_of_all_elements_located((By.XPATH, "//section[@class='p-article__content']//div[@class='c-markdown-content']/p")))
     text = ""
-    for p in article.get_property("children"):
+    for p in paragraphs:
         text += p.text + "\n"
     driver.quit()
     return text
 
 
-def parse_article(title):
-    articles = {}
-    with open(FILENAME, 'r') as f:
-        articles = json.load(f)
-    return articles[title]
+
 
 if __name__ == '__main__':
     title = sys.argv[1]
+    cont = len(sys.argv) > 2 and sys.argv[2] == "--continue"
     articles = {}
     try:
         with open(ARTICLES_FILENAME, 'r') as f:
             articles = json.load(f)
     except FileNotFoundError:
         with open(ARTICLES_FILENAME, 'w') as f:
-            f.write(json.dumps({}))
+            json.dump({}, f, indent=4)
     if title not in articles or title == "*":
         with open(LINKS_FILENAME, 'r') as f_links:
             links = json.load(f_links)
@@ -50,10 +47,29 @@ if __name__ == '__main__':
             if title not in articles:
                 articles[title] = parse_link(links[title])
         with open(ARTICLES_FILENAME, 'w') as f:
-            f.write(json.dumps(articles))
+            json.dump(articles, f, indent=4)
     article = articles[title]
-    #article = parse_article(title)
-    print(article.replace('“', ' ').replace("UEE", "U-E-E").replace(';', ',').encode("charmap", errors="ignore").decode("charmap", errors="ignore")[:-1])
+    s = article.replace('“', ' ').replace("UEE", "U-E-E").replace(';', ',').encode("charmap", errors="ignore").decode("charmap", errors="ignore")
+    l = len(s)
+    if l > 4000:
+        if cont:
+            p = int(sys.argv[3])
+            start = s.find("\n", 2000 * p, 3500 * p)
+            if start == -1:
+                start = s.find(".", 2000 * p, 3500 * p)
+            end = s.find("\n", start + 2000, start + 3500)
+            if end == -1:
+                end = s.find(".", start + 2000, start + 3500)
+            s = s[start:end]
+            if end != -1:
+                s = s + " Do you want me to continue?"
+        else:
+            end = s.find("\n", 2000, 3500)
+            if end == -1:
+                end = s.find(".", 2000, 3500)
+            s = s[:end]
+            s = s + " Do you want me to continue?"
+    print(s)
 
 
 

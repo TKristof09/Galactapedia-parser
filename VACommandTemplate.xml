@@ -114,7 +114,7 @@
           <Caption>Run main.py</Caption>
           <Id>c6abc900-02a4-4e07-8a2f-58a881c9ade9</Id>
           <ActionType>Launch</ActionType>
-          <Duration>0</Duration>
+          <Duration>30</Duration>
           <Delay>0</Delay>
           <KeyCodes />
           <Context>python</Context>
@@ -129,8 +129,8 @@
           <ConditionPairing>0</ConditionPairing>
           <ConditionGroup>0</ConditionGroup>
           <ConditionStartOperator>0</ConditionStartOperator>
-          <ConditionStartValue>0</ConditionStartValue>
-          <ConditionStartValueType>0</ConditionStartValueType>
+          <ConditionStartValue>1</ConditionStartValue>
+          <ConditionStartValueType>1</ConditionStartValueType>
           <ConditionStartType>0</ConditionStartType>
           <DecimalContext1>0</DecimalContext1>
           <DecimalContext2>0</DecimalContext2>
@@ -138,7 +138,8 @@
           <DateContext2>0001-01-01T00:00:00</DateContext2>
           <Disabled>false</Disabled>
           <RandomSounds />
-          <ConditionExpressions />
+          <IntegerContext1>0</IntegerContext1>
+          <IntegerContext2>0</IntegerContext2>
         </CommandAction>
         <CommandAction>
           <_caption>Say, '{TXT:article}'</_caption>
@@ -177,6 +178,83 @@
           <Disabled>false</Disabled>
           <RandomSounds />
           <ConditionExpressions />
+        </CommandAction>
+       <CommandAction>
+          <_caption>Set text [last_article] to 'test'</_caption>
+          <PairingSet>false</PairingSet>
+          <PairingSetElse>false</PairingSetElse>
+          <Ordinal>2</Ordinal>
+          <ConditionMet xsi:nil="true" />
+          <IndentLevel>0</IndentLevel>
+          <ConditionSkip>false</ConditionSkip>
+          <IsSuffixAction>false</IsSuffixAction>
+          <DecimalTransient1>0</DecimalTransient1>
+          <Caption>Set text [last_article] to 'test'</Caption>
+          <Id>04364230-da0f-414d-8071-8d5e349c2dad</Id>
+          <ActionType>TextSet</ActionType>
+          <Duration>0</Duration>
+          <Delay>0</Delay>
+          <KeyCodes />
+          <Context>last_article</Context>
+          <Context2 xml:space="preserve">test</Context2>
+          <Context3 />
+          <Context4 />
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+          <InputMode>0</InputMode>
+          <ConditionSetName />
+          <ConditionSetCondition />
+          <ConditionPairing>0</ConditionPairing>
+          <ConditionGroup>0</ConditionGroup>
+          <ConditionStartOperator>0</ConditionStartOperator>
+          <ConditionStartValue>0</ConditionStartValue>
+          <ConditionStartValueType>0</ConditionStartValueType>
+          <ConditionStartType>0</ConditionStartType>
+          <DecimalContext1>0</DecimalContext1>
+          <DecimalContext2>0</DecimalContext2>
+          <DateContext1>0001-01-01T00:00:00</DateContext1>
+          <DateContext2>0001-01-01T00:00:00</DateContext2>
+          <Disabled>false</Disabled>
+          <RandomSounds />
+          <IntegerContext1>0</IntegerContext1>
+          <IntegerContext2>0</IntegerContext2>
+        </CommandAction>
+        <CommandAction>
+          <_caption>Set small int (condition) [n_paragraph] value to 1</_caption>
+          <PairingSet>false</PairingSet>
+          <PairingSetElse>false</PairingSetElse>
+          <Ordinal>0</Ordinal>
+          <ConditionMet xsi:nil="true" />
+          <IndentLevel>0</IndentLevel>
+          <ConditionSkip>false</ConditionSkip>
+          <IsSuffixAction>false</IsSuffixAction>
+          <DecimalTransient1>0</DecimalTransient1>
+          <Caption>Set small int (condition) [n_paragraph] value to 1</Caption>
+          <Id>efa6b86d-2144-4268-9dbd-409516ea08f8</Id>
+          <ActionType>ConditionSet</ActionType>
+          <Duration>0</Duration>
+          <Delay>0</Delay>
+          <KeyCodes />
+          <X>1</X>
+          <Y>0</Y>
+          <Z>0</Z>
+          <InputMode>0</InputMode>
+          <ConditionSetName xml:space="preserve">n_paragraph</ConditionSetName>
+          <ConditionPairing>0</ConditionPairing>
+          <ConditionGroup>0</ConditionGroup>
+          <ConditionStartOperator>0</ConditionStartOperator>
+          <ConditionStartValue>0</ConditionStartValue>
+          <ConditionStartValueType>0</ConditionStartValueType>
+          <ConditionStartType>0</ConditionStartType>
+          <DecimalContext1>0</DecimalContext1>
+          <DecimalContext2>0</DecimalContext2>
+          <DateContext1>0001-01-01T00:00:00</DateContext1>
+          <DateContext2>0001-01-01T00:00:00</DateContext2>
+          <Disabled>false</Disabled>
+          <RandomSounds />
+          <IntegerContext1>0</IntegerContext1>
+          <IntegerContext2>0</IntegerContext2>
         </CommandAction>
       </ActionSequence>
       <Async>false</Async>
